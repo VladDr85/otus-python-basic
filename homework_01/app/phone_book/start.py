@@ -1,6 +1,6 @@
 import json
 import settings
-import app.utils.utils as ut
+import homework_01.app.utils.utils as ut
 
 
 def main():

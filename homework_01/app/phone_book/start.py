@@ -1,4 +1,5 @@
-import json
+from json import dump, load, JSONDecodeError
+
 import settings
 import homework_01.app.utils.utils as ut
 
@@ -57,7 +58,7 @@ def dump_phone_book_data(phone_book_data: dict) -> None:
     if ut.get_yes_no('\n\tСохранить данные на диск? Укажите: y/n: ',
                      '\tОтвет не понятен. Укажите: y/n: '):
         with open(settings.PHONE_BASE, 'w', encoding='utf-8') as file_w:
-            json.dump(phone_book_data, file_w, indent=4, ensure_ascii=False)
+            dump(phone_book_data, file_w, indent=4, ensure_ascii=False)
             print('\tДанные успешно сохранены!')
 
 
@@ -184,7 +185,7 @@ def recover_phone_data(phone_book_backup: dict) -> None:
     ut.get_yes_no('\tВосстановить заводские данные? Укажите: y/n: ',
                   '\tОтвет не понятен. Восстановить заводские данные? Укажите: y/n: ')
     with open(settings.PHONE_BASE, 'w', encoding='utf-8') as file_w:
-        json.dump(phone_book_backup, file_w, ensure_ascii=False, indent=4)
+        dump(phone_book_backup, file_w, ensure_ascii=False, indent=4)
         print('\tДанные восстановлены, теперь можно открыть телефонный справочник.')
 
 
@@ -195,12 +196,15 @@ def open_phone_data(phone_book: str) -> dict:
     """
     try:
         with open(phone_book, 'r', encoding='utf-8') as file_r:
-            phone_book_data = json.load(file_r)
+            phone_book_data = load(file_r)
             print(f'\tТелефонный справочник успешно открыт!')
             return phone_book_data
     except FileNotFoundError:
         print(f'\tТелефонный справочник {phone_book} не найден!')
         recover_phone_data(settings.PHONE_BOOK_BACKUP)
+    except JSONDecodeError:
+        print(f'\tТелефонный справочник {phone_book} открыт, но он пустой!')
+        return {}
 
 
 if __name__ == '__main__':

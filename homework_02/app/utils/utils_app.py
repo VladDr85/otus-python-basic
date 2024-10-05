@@ -1,17 +1,3 @@
-def display_menu(menu_dict: dict) -> None:
-    """
-    Выводим на экран меню программы
-    """
-    max_len = max([len(value) for value in menu_dict.values()])
-    menu_stars = '*' * (max_len + 12)
-
-    print(f'\n\t\t\t{menu_stars}')
-    for key, value in menu_dict.items():
-        end_tab = max_len - len(value)
-        print(f'\t\t\t*\t{key}. {value}{" " * end_tab}\t*')
-    print(f'\t\t\t{menu_stars}\n')
-
-
 def get_show_menu_item(menu_dict: dict) -> int:
     """
     Возвращает минимальный пункт меню,
@@ -25,11 +11,7 @@ def get_max_dict_key(dict_int_key: dict) -> int:
     """
     Возвращает максимальный ключ в словаре
     """
-    try:
-        max_id = max([int(key) for key in dict_int_key.keys()])
-        return max_id
-    except ValueError:
-        return 1
+    return max([int(key) for key in dict_int_key.keys()])
 
 
 def check_menu_item(menu_item: int, menu_dict: dict) -> bool:
@@ -64,3 +46,14 @@ def get_yes_no(user_message: str, error_message: str) -> bool:
         return True
     if item in correct_answer[1]:
         return False
+
+
+def input_lower(user_message: str) -> str:
+    """
+    Полеучение данных от пользователя в нижнемрегистре и усечением пробелов
+    """
+    return input(user_message).lower().strip()
+
+
+def input_capitalize(user_message: str) -> str:
+    return input(user_message).strip().capitalize()

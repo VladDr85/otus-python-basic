@@ -1,3 +1,8 @@
+### Описание приложения
+Каталог приложения: homework_05
+Запуск приложения: uvicorn app:app --reload
+
+
 ### Домашнее задание "Веб-приложение на FastAPI"
 #### Задача:
 - скопируйте папку `homework_05` для этой домашки (Памятка: https://github.com/OtusTeam/BasePython/tree/homeworks)

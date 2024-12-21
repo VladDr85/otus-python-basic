@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block content %}
+
+        {% if contacts %}
+        <!-- Если есть записи, выводим их список -->
+        <h2>Contact List</h2>
+            <ul>
+                <!-- Цикл по всем записям -->
+                {% for contact in contacts %}
+                Контакт №: {{ contact }}
+                <li>
+                    Имя:     {{ contacts[contact].name }}, 
+                    Телефон: {{ contacts[contact].phone }}, 
+                    Email:   {{ contacts[contact].email }}, 
+                    Статус:   {{ contacts[contact].status }}, 
+                    Город:    {{ contacts[contact].city }}, 
+                </li>
+                {% endfor %}
+            </ul>
+        {% elif contact %}
+        <!-- Если есть одна запись, выводим ее детали -->
+        <h2>Details contact</h2>
+        <p>Имя: {{ contact.name }}</p>
+        <p>Телефон: {{ contact.phone }}</p>
+        <p>Email: {{ contact.email }}</p>
+        <p>Статус: {{ contact.status }}</p>       
+        <p>Город: {{ contact.city }}</p>
+        {% endif %}
+
+        <!-- Форма для добавления новой записи -->
+        <h2>Add New Contact</h2>
+        <form action="/api/add-contact" method="post">
+            <!-- Поле для ввода имени -->
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required><br><br>
+            <!-- Поле для ввода телефона -->
+            <label for="phone">Phone:</label>
+            <input type="text" id="phone" name="phone" required><br><br>
+            <!-- Поле для ввода email -->
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email" required><br><br>
+            <!-- Поле для ввода Статуса -->
+            <label for="status">Status:</label>
+            <input type="text" id="status" name="status" required><br><br>
+            <!-- Поле для ввода города -->
+            <label for="city">City:</label>
+            <input type="text" id="city" name="city" required><br><br>
+            <!-- Кнопка для отправки формы -->
+            <button type="submit">Добавить контакт</button>
+        </form>
+
+{% endblock %}

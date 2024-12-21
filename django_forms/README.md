@@ -1,7 +1,7 @@
 ### Описание приложения
-- Каталог приложения: [`django_formsp`](https://github.com/VladDr85/otus-python-basic/tree/django_hw_1/django_1)
+- Каталог приложения: [`django_formsp`](https://github.com/VladDr85/otus-python-basic/tree/django_forms/django_forms)
 - Запуск приложения: ``` python manage.py runserver ```
-
+- SuperUser: `admin/admin`
 
 ### Цель
 - Закрепить навыки работы с HTML-шаблонами, передачи данных из контроллеров в шаблоны и реализации форм для пользовательского ввода.

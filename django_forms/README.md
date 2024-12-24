@@ -1,5 +1,7 @@
 ## Описание приложения
 - Каталог приложения: [`django_formsp`](https://github.com/VladDr85/otus-python-basic/tree/django_forms/django_forms)
+- Применить миграции для создания БД и структуры: ``` python manage.py migrate ```
+- Заполнить тестовыми данными: ``` python manage.py loaddata store/fixtures/store_fixture.json ```
 - Запуск приложения: ``` python manage.py runserver ```
 - SuperUser: `admin/admin`
 

@@ -1,4 +1,4 @@
-## Описание приложения
+## Описание настройки и запуска приложения
 - Каталог приложения: [`django_formsp`](https://github.com/VladDr85/otus-python-basic/tree/django_forms/django_forms)
 - Применить миграции для создания БД и структуры: ``` python manage.py migrate ```
 - Заполнить тестовыми данными: ``` python manage.py loaddata store/fixtures/store_fixture.json ```
@@ -25,6 +25,7 @@ python manage.py del_category_products #кастомная команда уда
 python manage.py generate_test_data #кастомная команда добавления товаров по существующим категориям 
 ```
 
+## Домашнее задание: Шаблоны и формы
 ### Цель
 - Закрепить навыки работы с HTML-шаблонами, передачи данных из контроллеров в шаблоны и реализации форм для пользовательского ввода.
 

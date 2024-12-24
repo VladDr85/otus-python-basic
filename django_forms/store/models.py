@@ -8,7 +8,7 @@ class Product(models.Model):
     category = models.ForeignKey('Category', on_delete=models.CASCADE, related_name='products')
 
     def __str__(self):
-        return f'{self.name}, цена: {self.price} ({self.description})'
+        return f'{self.name}, цена: {self.price} {self.description}'
 
 class Category(models.Model):
     name = models.CharField(max_length=100)

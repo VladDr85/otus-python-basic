@@ -1,0 +1,23 @@
+{% extends 'store/base.html' %}
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block content %}
+        <h1>Список товаров</h1>
+        <ul class="list-group">
+            {% for product in products %}
+                <li class="list-group-item">
+                    <a href="{% url 'product_detail' product.id %}"> <h5>{{ product.name }}</h5> </a>
+                    <h5>Товар: {{ product.name }}</h5>
+                    <p>{{ product.description }}</p>
+                    <p>Цена: {{ product.price }}</p>
+                    <p>Дата поставки: {{ product.created_at }}</p>
+                    <p>Категория: {{ product.category }}</p>
+                    <a href="{% url 'edit_product' product.id %}" class="btn btn-primary">Редактировать</a>
+                    <a href="{% url 'delete_product' product.id %}" class="btn btn-primary">Удалить</a>
+                </li>
+            {% empty %}
+                <li class="list-group-item">Нет товаров</li>
+            {% endfor %}
+        </ul>
+{% endblock %}

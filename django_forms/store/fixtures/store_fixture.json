@@ -1,0 +1,163 @@
+[
+    {
+        "model": "store.category",
+        "pk": 1,
+        "fields": {
+            "name": "Сотовые телефоны",
+            "description": "Сотовые телефоны (кнопочные)"
+        }
+    },
+    {
+        "model": "store.category",
+        "pk": 2,
+        "fields": {
+            "name": "Смартфон",
+            "description": "Смартфоны"
+        }
+    },
+    {
+        "model": "store.category",
+        "pk": 3,
+        "fields": {
+            "name": "Аксессуары",
+            "description": "Аксессуары для смартфонов"
+        }
+    },
+    {
+        "model": "store.category",
+        "pk": 4,
+        "fields": {
+            "name": "Смарт-часы и браслеты",
+            "description": "Смарт-часы и браслеты (носимая электроника)"
+        }
+    },
+    {
+        "model": "store.category",
+        "pk": 5,
+        "fields": {
+            "name": "Наушники и гарнитуры",
+            "description": "Все виды наушников (Наушники TWS, Наушники-вкладыши и внутриканальные, Накладные и охватывающие наушники, Игровые наушники)"
+        }
+    },
+    {
+        "model": "store.Product",
+        "pk": 1,
+        "fields": {
+            "name": "Samsung Galaxy S24 128 ГБ",
+            "description": "6.7\" Смартфон Samsung Galaxy S24 128 ГБ зеленый",
+            "price": 79999,
+            "created_at": "2024-02-01T12:00:00Z",
+            "category": 2
+        }
+    },
+    {
+        "model": "store.Product",
+        "pk": 2,
+        "fields": {
+            "name": "Samsung Galaxy S24 256 ГБ",
+            "description": "6.7\" Смартфон Samsung Galaxy S24 256 ГБ зеленый",
+            "price": 84999,
+            "created_at": "2024-02-01T12:00:00Z",
+            "category": 2
+        }
+    },
+    {
+        "model": "store.Product",
+        "pk": 3,
+        "fields": {
+            "name": "Samsung Galaxy S24 512 ГБ",
+            "description": "6.7\" Смартфон Samsung Galaxy S24 512 ГБ черный",
+            "price": 89999,
+            "created_at": "2024-03-01T12:00:00Z",
+            "category": 2
+        }
+    },
+    {
+        "model": "store.Product",
+        "pk": 4,
+        "fields": {
+            "name": "Samsung Galaxy A54 128 ГБ",
+            "description": "6.7\" Смартфон Samsung Galaxy A54 128 ГБ зеленый",
+            "price": 39999,
+            "created_at": "2024-03-01T12:00:00Z",
+            "category": 2
+        }
+    },
+    {
+        "model": "store.Product",
+        "pk": 5,
+        "fields": {
+            "name": "Samsung Galaxy A54 256 ГБ",
+            "description": "6.7\" Смартфон Samsung Galaxy A54 256 ГБ зеленый",
+            "price": 43999,
+            "created_at": "2024-03-01T12:00:00Z",
+            "category": 2
+        }
+    },
+    {
+        "model": "store.Product",
+        "pk": 6,
+        "fields": {
+            "name": "Samsung Galaxy A15 128 ГБ",
+            "description": "6.7\" Смартфон Samsung Galaxy A54 128 ГБ зеленый",
+            "price": 16999,
+            "created_at": "2024-04-01T12:00:00Z",
+            "category": 2
+        }
+    },
+    {
+        "model": "store.Product",
+        "pk": 7,
+        "fields": {
+            "name": "Samsung Galaxy A15 256 ГБ",
+            "description": "6.7\" Смартфон Samsung Galaxy A54 256 ГБ зеленый",
+            "price": 19999,
+            "created_at": "2024-04-01T12:00:00Z",
+            "category": 2
+        }
+    },
+    {
+        "model": "store.Product",
+        "pk": 8,
+        "fields": {
+            "name": "Samsung Galaxy Buds FE черный",
+            "description": "Наушники TWS Samsung Galaxy Buds FE черный",
+            "price": 8999,
+            "created_at": "2024-04-01T12:00:00Z",
+            "category": 5
+        }
+    },
+    {
+        "model": "store.Product",
+        "pk": 9,
+        "fields": {
+            "name": "Samsung Galaxy Buds FE белые",
+            "description": "Наушники TWS Samsung Galaxy Buds FE белые",
+            "price": 8999,
+            "created_at": "2024-05-01T12:00:00Z",
+            "category": 5
+        }
+    },
+    {
+        "model": "store.Product",
+        "pk": 10,
+        "fields": {
+            "name": "Samsung Buds 2 Pro серый",
+            "description": "Наушники TWS Samsung Buds 2 Pro серый [2022, 2.0, внутриканальные, Bluetooth, 5.3, беспроводная зарядка]",
+            "price": 13999,
+            "created_at": "2024-05-01T12:00:00Z",
+            "category": 5
+        }
+    },
+    {
+        "model": "store.Product",
+        "pk": 11,
+        "fields": {
+            "name": "Samsung Buds 2 Pro белый",
+            "description": "Наушники TWS Samsung Buds 2 Pro белый [2022, 2.0, внутриканальные, Bluetooth, 5.3, беспроводная зарядка]",
+            "price": 13999,
+            "created_at": "2024-05-01T12:00:00Z",
+            "category": 5
+        }
+    }
+]

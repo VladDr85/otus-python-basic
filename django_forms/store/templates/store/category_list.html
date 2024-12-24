@@ -1,0 +1,21 @@
+{% extends 'store/base.html' %}
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block content %}
+        <h1>Список категорий</h1>
+        <ul class="list-group">
+            {% for category in categories %}
+                <li class="list-group-item">
+                    <a href="{% url 'category_detail' category.id %}"> <h5>{{ category.name }}</h5> </a>
+                    <p>{{ category.description }}</p>
+                    <small>Количество товаров: {{ category.products.count }} </small>
+                    <p></p>
+                    <a href="{% url 'edit_category' category.id %}" class="btn btn-primary">Редактировать</a>
+                    <a href="{% url 'delete_category' category.id %}" class="btn btn-primary">Удалить</a>
+                </li>
+            {% empty %}
+                <li class="list-group-item">Нет категорий</li>
+            {% endfor %}
+        </ul>
+{% endblock %}

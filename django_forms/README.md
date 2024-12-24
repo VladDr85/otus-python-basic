@@ -43,11 +43,8 @@ python manage.py shell
 ```
 - Работа с проектом
 ```
-from store.models import Product, Category
-category = Category.objects.create(name='Телефон', description='Сотовые телефоны и смартфоны')
-product = Product.objects.create(name='Samsung S24 DUO 254Gb', description = 'Samsung S24 DUO 254Gb Gray Exenus 2400', price=69999.99, category=category) 
-Product.objects.all()
-Category.objects.all()
-category.products.all()
-product.category.name
+python manage.py loaddata store/fixtures/store_fixture.json #заполнение данных из фикстур
+python manage.py dumpdata store > store/fixtures/store_fixture_dump.json
+python manage.py del_category_products #кастомная команда удаления Категорий и товаров
+python manage.py generate_test_data #кастомная команда добавления товаров по существующим категориям 
 ```

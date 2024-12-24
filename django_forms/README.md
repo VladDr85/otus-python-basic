@@ -1,7 +1,27 @@
-### Описание приложения
+## Описание приложения
 - Каталог приложения: [`django_formsp`](https://github.com/VladDr85/otus-python-basic/tree/django_forms/django_forms)
 - Запуск приложения: ``` python manage.py runserver ```
 - SuperUser: `admin/admin`
+
+## Набор команд для выполнения ДЗ
+- Создание и настройка проекта
+```
+pip install django
+django-admin startproject config .	#создание проекта Django в текущем каталоге
+python manage.py runserver
+python manage.py startapp store		#создание приложения Django в текущем проекте
+python manage.py makemigrations		#создать миграцию
+python manage.py migrate		#применить все не примененные миграции
+python manage.py createsuperuser
+python manage.py shell
+```
+- Работа с проектом
+```
+python manage.py loaddata store/fixtures/store_fixture.json #заполнение данных из фикстур
+python manage.py dumpdata store > store/fixtures/store_fixture_dump.json
+python manage.py del_category_products #кастомная команда удаления Категорий и товаров
+python manage.py generate_test_data #кастомная команда добавления товаров по существующим категориям 
+```
 
 ### Цель
 - Закрепить навыки работы с HTML-шаблонами, передачи данных из контроллеров в шаблоны и реализации форм для пользовательского ввода.
@@ -29,22 +49,3 @@
 - Формы работают корректно, включая валидацию.
 - Настройка админки с кастомизацией.
 
-## Набор команд для выполнения ДЗ
-- Создание и настройка проекта
-```
-pip install django
-django-admin startproject config .	#создание проекта Django в текущем каталоге
-python manage.py runserver
-python manage.py startapp store		#создание приложения Django в текущем проекте
-python manage.py makemigrations		#создать миграцию
-python manage.py migrate		#применить все не примененные миграции
-python manage.py createsuperuser
-python manage.py shell
-```
-- Работа с проектом
-```
-python manage.py loaddata store/fixtures/store_fixture.json #заполнение данных из фикстур
-python manage.py dumpdata store > store/fixtures/store_fixture_dump.json
-python manage.py del_category_products #кастомная команда удаления Категорий и товаров
-python manage.py generate_test_data #кастомная команда добавления товаров по существующим категориям 
-```

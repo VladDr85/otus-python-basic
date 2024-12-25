@@ -1,0 +1,14 @@
+{% extends 'store/base.html' %}
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block content %}
+       <h1>Информация о категории "{{ category.name }}" </h1>
+       <p>{{ category.description }}</p>
+       <small>Количество товаров: {{ category.products.count }} </small>
+       <p></p>
+    
+       <a href="{% url 'edit_category' category.id %}" class="btn btn-primary">Редактировать</a>
+       <a href="{% url 'category_list' %}" class="btn btn-secondary">Назад</a>
+
+{% endblock %}

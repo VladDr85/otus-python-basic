@@ -33,4 +33,3 @@ class Command(BaseCommand):
             self.stdout.write("Создали 10 товаров!")
         else:
             self.stdout.write(f"Создание товаров не возможно. Отсутствуют категории!")
-

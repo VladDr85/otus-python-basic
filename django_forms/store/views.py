@@ -1,16 +1,10 @@
-from itertools import product
-
 from django.shortcuts import render, get_object_or_404, redirect
-from django.http import HttpResponse
-
 from store.forms import ProductForm, CategoryForm
 from store.models import Product, Category
 
 
-# Create your views here.
 def index(request):
     return render(request, 'store/home.html')
-
 
 def product_list(request):
     products = Product.objects.all()

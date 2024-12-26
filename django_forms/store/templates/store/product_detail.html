@@ -9,6 +9,7 @@
         <p>Дата поставки: {{ product.created_at }}</p>
         <p>Категория: {{ product.category }}</p>
         <a href="{% url 'edit_product' product.id %}" class="btn btn-primary">Редактировать</a>
+        <a href="{% url 'delete_product' product.id %}" class="btn btn-primary">Удалить</a>
         <a href="{% url 'product_list' %}" class="btn btn-secondary">Назад</a>
 
 {% endblock %}

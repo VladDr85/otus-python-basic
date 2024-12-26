@@ -3,6 +3,31 @@
 {% block title %} {{ title }} {% endblock %}
 
 {% block content %}
+    
+    <form method="get" class="row mt-4">
+        <div class="col-md-4">
+            <label for="category" class="form-label">Категория</label>
+            <select name="category" id="category" class="form-select">
+                <option value="">Все категории</option>
+                {% for category in categories %}
+                    <option value="{{ category.id }}" {% if request.GET.category == category.id|stringformat:"s" %}selected{% endif %}>
+                        {{ category.name }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div> 
+    
+        <div class="col-md-4">
+            <label for="price" class="form-label">Максимальная цена</label>
+            <input type="number" name="price" id="price" class="form-control" placeholder="Введите максимальную цену"
+                   value="{{ request.GET.price }}">
+        </div>
+    
+        <div class="col-md-4 d-flex align-items-end">
+            <button type="submit" class="btn btn-primary w-100">Фильтровать</button>
+        </div>
+    </form>
+    
         <h1>Список товаров</h1>
         <ul class="list-group">
             {% for product in products %}

@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -13,9 +13,15 @@ def index(request):
 
 
 class ProductListView(ListView):
+    """
+    Класс для отображения списка товаров с включенной пагинацией.
+    В get_queryset настроена фильтрация по Категории и Цене.
+    В get_context_data дополняем контекст, чтобы вернуть список Категорий для фильтрации
+    """
     model = Product
     template_name = 'store/product_list.html'
     context_object_name = 'products'
+    paginate_by = 4
     extra_context = {
         'title': 'Список товаров',
     }
@@ -38,6 +44,9 @@ class ProductListView(ListView):
 
 
 class ProductDetailView(DetailView):
+    """
+    Класс для детального отображения информации о конкретном продукте
+    """
     model = Product
     template_name = 'store/product_detail.html'
     context_object_name = 'product'
@@ -47,6 +56,10 @@ class ProductDetailView(DetailView):
 
 
 class ProductCreateView(CreateView):
+    """
+    Класс для создания нового товара.
+    После успешного создания товара, выводится сообщение на странице product_list
+    """
     model = Product
     template_name = 'store/add_product.html'
     form_class = ProductForm
@@ -56,11 +69,16 @@ class ProductCreateView(CreateView):
     }
 
     def form_valid(self, form):
-        messages.success(self.request, 'Товар успешно создан')
+        product_name = form.cleaned_data['name']
+        messages.success(self.request, f'Товар "{product_name}" успешно создан!')
         return super().form_valid(form)
 
 
 class ProductUpdateView(UpdateView):
+    """
+    Класс для обновления товара.
+    После успешного обновления, выводится сообщение на странице product_list
+    """
     model = Product
     template_name = 'store/edit_product.html'
     form_class = ProductForm
@@ -69,8 +87,16 @@ class ProductUpdateView(UpdateView):
         'title': 'Редактирование товара',
     }
 
+    def form_valid(self, form):
+        product_name = form.cleaned_data['name']
+        messages.success(self.request, f'Товар "{product_name}" успешно обновлен!')
+        return super().form_valid(form)
+
 
 class ProductDeleteView(DeleteView):
+    """
+    Класс для удаления товара.
+    """
     model = Product
     template_name = 'store/delete_product.html'
     success_url = reverse_lazy('product_list')
@@ -79,63 +105,76 @@ class ProductDeleteView(DeleteView):
     }
 
 
-def category_list(request):
-    categories = Category.objects.all()
-    context = {
+class CategoryListView(ListView):
+    """
+    Класс для отображения списка категорий товаров с включенной пагинацией.
+    """
+    model = Category
+    template_name = 'store/category_list.html'
+    context_object_name = 'categories'
+    paginate_by = 3
+    extra_context = {
         'title': 'Список категорий',
-        'categories': categories
     }
-    return render(request, 'store/category_list.html', context=context)
 
 
-def category_detail(request, category_id):
-    category = get_object_or_404(Category, pk=category_id)
-    context = {
-        'title': category.name,
-        'category': category
+class CategoryDetailView(DetailView):
+    """
+    Класс для детального отображения информации о конкретной категории товара
+    """
+    model = Category
+    template_name = 'store/category_detail.html'
+    context_object_name = 'category'
+    extra_context = {
+        'title': 'Описание категории',
     }
-    return render(request, 'store/category_detail.html', context=context)
 
-def add_category(request):
-    if request.method == 'POST':
-        form = CategoryForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('category_list')
-    else:
-        form = CategoryForm()
-    context = {
-        'title': 'Добавление категории',
-        'form': form
+
+class CategoryCreateView(CreateView):
+    """
+    Класс для создания новой категории товара.
+    После успешного создания категории, выводится сообщение на странице category_list
+    """
+    model = Category
+    template_name = 'store/add_category.html'
+    form_class = CategoryForm
+    success_url = reverse_lazy('category_list')
+    extra_context = {
+        'title': 'Создание категории',
     }
-    return render(request, 'store/add_category.html', context=context)
 
-def edit_category(request, category_id):
-    category = get_object_or_404(Category, pk=category_id)
-    if request.method == 'POST':
-        form = CategoryForm(request.POST, instance=category)
-        if form.is_valid():
-            form.save()
-            return redirect('category_list')
-    else:
-        form = CategoryForm(instance=category)
-    context = {
+    def form_valid(self, form):
+        category_name = form.cleaned_data['name']
+        messages.success(self.request, f'Категория "{category_name}" успешно создана!')
+        return super().form_valid(form)
+
+
+class CategoryUpdateView(UpdateView):
+    """
+    Класс для обновления категорий.
+    После успешного обновления, выводится сообщение на странице category_list
+    """
+    model = Category
+    template_name = 'store/edit_category.html'
+    form_class = CategoryForm
+    success_url = reverse_lazy('category_list')
+    extra_context = {
         'title': 'Редактирование категории',
-        'form': form
     }
-    return render(request, 'store/edit_category.html', context=context)
 
-def delete_category(request, category_id):
-    category = get_object_or_404(Category, pk=category_id)
-    if request.method == 'POST':
-        form = CategoryForm(request.POST, instance=category)
-        if form.is_valid():
-            category.delete()
-            return redirect('category_list')
-    else:
-        form = CategoryForm(instance=category)
-    context = {
+    def form_valid(self, form):
+        category_name = form.cleaned_data['name']
+        messages.success(self.request, f'Категория "{category_name}" успешно обновлена!')
+        return super().form_valid(form)
+
+
+class CategoryDeleteView(DeleteView):
+    """
+    Класс для удаления категории товара.
+    """
+    model = Category
+    template_name = 'store/delete_category.html'
+    success_url = reverse_lazy('category_list')
+    extra_context = {
         'title': 'Удаление категории',
-        'form': form
     }
-    return render(request, 'store/delete_category.html', context=context)

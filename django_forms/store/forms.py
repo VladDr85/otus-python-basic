@@ -1,4 +1,5 @@
 from django import forms
+
 from store.models import Product, Category
 
 
@@ -63,6 +64,7 @@ class ProductForm(forms.ModelForm):
                 if word in description.lower():
                     raise forms.ValidationError(f'Описание содержит запрещенное слово: {word}')
 
+
 class CategoryForm(forms.ModelForm):
     class Meta:
         model = Category
@@ -112,4 +114,3 @@ class CategoryForm(forms.ModelForm):
             for word in forbidden_words:
                 if word in name.lower():
                     raise forms.ValidationError(f'Наименование содержит запрещенное слово: {word}')
-

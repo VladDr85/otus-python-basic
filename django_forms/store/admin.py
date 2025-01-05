@@ -1,12 +1,14 @@
 from django.contrib import admin
 from store.models import Product, Category
 
+
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('name', 'description',)
     search_fields = ('name', 'description',)
     search_help_text = 'Поиск по Имени и Описанию'
     ordering = ('name',)
+
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):

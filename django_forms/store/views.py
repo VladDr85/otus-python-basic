@@ -1,3 +1,5 @@
+from http.client import responses
+
 from django.contrib import messages
 from django.shortcuts import render
 from django.urls import reverse_lazy
@@ -6,7 +8,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from store.forms import ProductForm, CategoryForm
 from store.models import Product, Category
-
+from store.tasks import send_notification_email
 
 def index(request):
     return render(request, 'store/home.html')
@@ -59,6 +61,7 @@ class ProductCreateView(CreateView):
     """
     Класс для создания нового товара.
     После успешного создания товара, выводится сообщение на странице product_list
+    Отправляется письмо на почту с информацией о новом товаре
     """
     model = Product
     template_name = 'store/add_product.html'
@@ -69,9 +72,16 @@ class ProductCreateView(CreateView):
     }
 
     def form_valid(self, form):
+        response = super().form_valid(form)
+        send_notification_email.delay(
+            subject = f'Создание товара: {form.instance.name}',
+            message = f'Товар был создан с описанием: {form.instance.description}',
+            recipient_list = 'skoch2000@yandex.ru',
+        )
+
         product_name = form.cleaned_data['name']
         messages.success(self.request, f'Товар "{product_name}" успешно создан!')
-        return super().form_valid(form)
+        return response
 
 
 class ProductUpdateView(UpdateView):

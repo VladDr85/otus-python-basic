@@ -1,6 +1,6 @@
 from django.contrib import admin
 from store.models import Product, Category
-
+from django_celery_results.models import TaskResult
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
